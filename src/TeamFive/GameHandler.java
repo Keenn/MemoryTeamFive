@@ -17,10 +17,10 @@ public class GameHandler {
         List<Card> listOfCards = new ArrayList<>();
         Board board;
 
-         Scanner sc = new Scanner(System.in);
-         GameHandler gameHandler = new GameHandler();
-         gameHandler.startMenu(sc);
-      
+        Scanner sc = new Scanner(System.in);
+        GameHandler gameHandler = new GameHandler();
+        gameHandler.startMenu(sc);
+
     }
 
     /**
@@ -60,20 +60,23 @@ public class GameHandler {
      * @param scan
      */
     private void playGame(List<Player> listOfPlayer, Scanner scan) {
+        int numofCardLeft;
 
-        while (true) {
-            Board board = addBoard(scan);
+        while (true) { //Loop until the game exit or listOfPlayer is empty
+            Board board = addBoard(scan); // Addboard() not made yet
+            numofCardLeft = board.getNumOfCards();
 
-            /*
-             * här börjar loopen playerturn/
-             */
-            result(listOfPlayer);
-            listOfPlayer = continueGames(listOfPlayer, scan);
+            while (numofCardLeft != 0) {
+                /*
+                 * här börjar loopen playerturn/
+                 */
+                numofCardLeft--;       //  When a par have been match
+            }
+            result(listOfPlayer);       // Print out the result
+
+            listOfPlayer = askToContinue(listOfPlayer, scan);
             if (listOfPlayer.isEmpty()) {
-                System.out.println("|---No more Player---\n|");
-                System.out.println("|<-><-><-><-><-><-><-><-><->|");
-                System.out.println("|     ---GAMES OVER---|");
-                System.out.println("|<-><-><-><-><-><-><-><-><->|");
+                printGameOver();
                 System.exit(0);
             }
         }
@@ -99,7 +102,7 @@ public class GameHandler {
      * @param scan
      * @return the new list of player who wanna continue playing memory
      */
-    private List<Player> continueGames(List<Player> listOfPlayer, Scanner scan) {
+    private List<Player> askToContinue(List<Player> listOfPlayer, Scanner scan) {
         List<Player> newList = new ArrayList<>();
         printContinueGames();
 
@@ -125,15 +128,15 @@ public class GameHandler {
 
         switch (getUserInt(scan, 1, 3)) {
             case 1:
-                board = new Board(2);
+                board = new Board(2, 2);   // Create 2x2 board
                 break;
 
             case 2:
-                board = new Board(4);
+                board = new Board(4, 4); // Create 4x4 board
                 break;
 
             case 3:
-                board = new Board(6);
+                board = new Board(6, 6);   // Create 6x6 board
                 break;
 
         }
@@ -153,7 +156,7 @@ public class GameHandler {
             if (1 == getUserInt(scan, 1, 2)) {
                 System.out.println("Enter player name");
                 listOfPlayer.add(new User(getUserString(scan)));
-                System.out.printf("<<< %s have been added >>> \n",listOfPlayer.get(listOfPlayer.size()-1));
+                System.out.printf("<<< %s have been added >>> \n", listOfPlayer.get(listOfPlayer.size() - 1));
             } else {
                 break;
             }
@@ -261,6 +264,14 @@ public class GameHandler {
         System.out.println("| Would you like to play again?");
         System.out.println("| [1] Continue");
         System.out.println("| [2] Quit");
+        System.out.println("|<-><-><-><-><-><-><-><-><->|");
+    }
+
+    private void printGameOver() {
+
+        System.out.println("|<-><-><-><-><-><-><-><-><->|");
+        System.out.println("|---No more Player---\n|");
+        System.out.println("|  ---GAMES OVER---");
         System.out.println("|<-><-><-><-><-><-><-><-><->|");
     }
 }

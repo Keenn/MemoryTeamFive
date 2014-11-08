@@ -23,49 +23,49 @@ public class Demo {
         Board board;
 
         System.out.println("_______________Board_______________");
-        System.out.println("| It have various size");
-        System.out.println("\n[4x4]    [6x6]    [8x8]    [10x10]    [12x12]");
+        System.out.println("| It could have various size");
+        System.out.println("\n[4x4]    [6x6]    [6x7]    [10x12]  ");
 
-        board = new Board(4);
+        board = new Board(4,4);
         listOfCards = board.initCardsColor();
         board.printHiddenCard(listOfCards, false);
         System.out.println("4x4");
 
-        board = new Board(6);
+        board = new Board(6,6);
         listOfCards = board.initCardsColor();
         board.printHiddenCard(listOfCards, false);
         System.out.println(" 6x6\n");
 
-        board = new Board(10);
+        board = new Board(6,7);
         listOfCards = board.initCardsNum();
         board.printHiddenCard(listOfCards, false);
-        System.out.println(" 10x10\n");
+        System.out.println(" 6x7\n");
 
-        board = new Board(12);
+        board = new Board(10,12);
         listOfCards = board.initCardsNum();
         board.printHiddenCard(listOfCards, false);
-        System.out.println(" 12x12\n");
+        System.out.println(" 10x12\n");
 
         System.out.println("_______________Board_______________");
         System.out.println("| Difference theme");
 
-        board = new Board(4);
+        board = new Board(4,5);
         listOfCards = board.initCardsColor();
         board.printAllCard(listOfCards);
-        System.out.println("4x4 Color theme");
+        System.out.println("4x5 Color theme");
 
-        board = new Board(4);
+        board = new Board(4,4);
         listOfCards = board.initCardsNum();
         board.printAllCard(listOfCards);
         System.out.println("4x4 Number theme");
 
-        board = new Board(4);
+        board = new Board(4,4);
         listOfCards = board.initCardsColor();
         board.shuffleBoard(listOfCards);
         board.printAllCard(listOfCards);
         System.out.println("Shuffle 4x4 Color theme");
 
-        board = new Board(4);
+        board = new Board(4,4);
         listOfCards = board.initCardsNum();
         board.shuffleBoard(listOfCards);
         board.printAllCard(listOfCards);

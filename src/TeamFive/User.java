@@ -1,4 +1,3 @@
-
 package TeamFive;
 
 import java.util.Scanner;
@@ -7,14 +6,16 @@ import java.util.Scanner;
  *
  * @author Keenn
  */
-public class User implements Player{
+public class User implements Player {
 
-    private int score;
+    private int score, numPairsFound, numOfTries;
     private final String name;
 
     public User(String name) {
         this.name = name;
         this.score = 0;
+        this.numPairsFound = 0;
+        this.numOfTries = 0;
     }
 
     @Override
@@ -42,7 +43,27 @@ public class User implements Player{
     }
 
     @Override
-    public void resetScore() {
+    public void addnumOfTries(int tries) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getNumOfTries() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addNumPairsFound(int found) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getNumPairsFound() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void reset() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

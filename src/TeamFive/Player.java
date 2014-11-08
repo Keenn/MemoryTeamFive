@@ -1,4 +1,3 @@
-
 package TeamFive;
 
 import java.util.Scanner;
@@ -15,5 +14,13 @@ public interface Player {
 
     public int getScore();
 
-    public void resetScore();
+    public void addnumOfTries(int tries);
+
+    public int getNumOfTries();
+
+    public void addNumPairsFound(int found);
+
+    public int getNumPairsFound();
+
+    public void reset();
 }

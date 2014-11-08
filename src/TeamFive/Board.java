@@ -15,10 +15,12 @@ import java.util.Random;
  */
 public class Board {
 
-    private final int size;
+    private final int numOfCards, row;
 
-    public Board(int size) {
-        this.size = size;
+    public Board(int row, int colum) {
+        this.numOfCards = row * colum;
+        this.row =row;
+
     }
 
     /**
@@ -53,18 +55,16 @@ public class Board {
         String[] colors = {"Rose", "Rose", "Cyan", "Cyan", "Aero", "Aero", "Pink", "Pink", "Blue", "Blue", "Red", "Red", "Amber", "Amber", "Grey", "Grey", "Azura", "Azura", "Beige", "Beige", "Brown", "Brown",
             "Green", "Green", "Olive", "Olive", "Brass", "Brass", "Purple", "Purple", "Violet", "Violet", "Orange", "Orange", "Crimson", "Crimson",};
 
-        if (size % 2 == 0) { //if the size is even
+        if (numOfCards % 2 == 0) { //if the size is even
 
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    deck.add(new Card(colors[index], index));
-                    index++;
-                }
+            for (int i = 0; i < numOfCards; i++) {
+                deck.add(new Card(colors[index], index));
+                index++;
             }
         } else {
             System.err.println("Error in Card.setColorBoard()");
             System.err.println("Error! The size must be even");
-            System.exit(size);
+            System.exit(numOfCards);
         }
 
         return deck;
@@ -74,12 +74,13 @@ public class Board {
     public List<Card> initCardsNum() {
         List<Card> deck = new ArrayList<>();
 
-        for (int i = 0; i < size * size / 2; i++) {
+        for (int i = 0; i < numOfCards / 2; i++) {
             deck.add(new Card(Integer.toString(i), i));
             deck.add(new Card(Integer.toString(i), i));
         }
         return deck;
     }
+
     /**
      * This method prints all the cards in the list.
      *
@@ -89,7 +90,7 @@ public class Board {
     public void printAllCard(List<Card> deck) {
         int i = 0;
         for (Card card : deck) {
-            if (i % size == 0) { //new line
+            if (i % row == 0) { //new line
                 System.out.println("\n");
             }
             card.showCard(true);
@@ -108,7 +109,7 @@ public class Board {
 
         for (int i = 0; i < deck.size(); i++) {
 
-            if (i % size == 0) {
+            if (i % row == 0) {
                 System.out.println("\n");
             }
 
@@ -126,7 +127,7 @@ public class Board {
 
         for (int i = 1; i < deck.size() + 1; i++) {
 
-            if (i % size - 1 == 0) {
+            if (i % row - 1 == 0) {
                 System.out.println("\n");
             }
             if (showCardNum) {
@@ -138,5 +139,9 @@ public class Board {
             }
         }
         System.out.println();
+    }
+
+    public int getNumOfCards() {
+        return this.numOfCards;
     }
 }
